@@ -1,5 +1,7 @@
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, } from '@mui/material/styles';
+import { Container } from '@mui/material';
+import AppRoute from "./Router";
 
 export const themeOptions = createTheme({
   palette: {
@@ -16,7 +18,9 @@ export const themeOptions = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={themeOptions}>
-      <div className="App">Maa Gayatri TRADERS</div>
+      <Container maxWidth="false" style={{ padding: 0 }}>
+        <AppRoute/>
+      </Container>
     </ThemeProvider>
   );
 }

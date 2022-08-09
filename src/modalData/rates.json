@@ -1,0 +1,72 @@
+[
+    {
+        "category":"Rod",
+        "brand": "Tata Tiscon",
+        "others": "8mm",
+        "rate": "85",
+        "unit": "per KG"
+    },
+    {
+        "category":"Rod",
+        "brand": "Tata Tiscon",
+        "others": "10mm",
+        "rate": "84",
+        "unit": "per KG"
+    },
+    {
+        "category":"Rod",
+        "brand": "Tata Tiscon",
+        "others": "12mm",
+        "rate": "83",
+        "unit": "per KG"
+    },
+    {
+        "category":"Rod",
+        "brand": "Tata Tiscon",
+        "others": "16mm",
+        "rate": "83",
+        "unit": "per KG"
+    },
+    {
+        "category":"Rod",
+        "brand": "Tata Tiscon",
+        "others": "20mm",
+        "rate": "83",
+        "unit": "per KG"
+    },
+    {
+        "category": "Cement",
+        "brand": "Jaypee PPC",
+        "others": "53MPA",
+        "rate": "370",
+        "unit":"per pc"
+    },
+    {
+        "category": "Cement",
+        "brand": "Jaypee Buland",
+        "others": "53MPA",
+        "rate": "430",
+        "unit":"per pc"
+    },
+    {
+        "category": "Cement",
+        "brand": "Jaypee Buland",
+        "others": "53MPA",
+        "rate": "430",
+        "unit":"per pc"
+    },
+    {
+        "category": "Cement",
+        "brand": "Jaypee Buland",
+        "others": "53MPA",
+        "rate": "430",
+        "unit":"per pc"
+    },
+    {
+        "category": "Cement",
+        "brand": "Jaypee Buland",
+        "others": "53MPA",
+        "rate": "430",
+        "unit":"per pc"
+    }
+]
