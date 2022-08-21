@@ -39,6 +39,7 @@ const PageRouter = () => {
         initializeApp(firebaseConfig);
     },[]);
 
+    
    return (
    <BrowserRouter>
    <Header/>
