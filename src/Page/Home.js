@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -5,13 +7,29 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import rateData from '../modalData/rates.json';
+import getData from '../action/getData';
 
 
 
+const Home = (props) => {
+  const {data, apiState, getData} = props || {};
+  const dataIds = Object.keys(data);
+  const stockRates = []
+  dataIds.forEach(element => {
+    stockRates.push(props.data[element]);
+  });
+  useEffect(() => {
+    props.getData();
+  } , []);
 
+  if(apiState !== "SUCCESS"){
+    return <h1>Loading ...</h1>
+  }
+  
+  if(stockRates.length ===0){
+    return <h1>No Data Found</h1>
+  };
 
-const Home = () => {
   return (
     <TableContainer component={Paper} sx={{ maxHeight: '100vh' }}>
       <Table sx={{ minWidth: 320 }} stickyHeader aria-label="sticky table">
@@ -22,8 +40,8 @@ const Home = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rateData.map((rate) => (
-            <TableRow key={`${rate.category} - ${rate.brand} - ${rate.others}`}>
+          {stockRates.map((rate) => (
+            <TableRow key={rate.id}>
               <TableCell component="th" scope="row">
                 {`${rate.category} - ${rate.brand} - ${rate.others}`}
               </TableCell>
@@ -34,7 +52,14 @@ const Home = () => {
       </Table>
     </TableContainer>
   );
+};
+
+
+const mapStateToProps = state => {
+  const {itemRateReducer} = state || {}
+  return {
+    ...itemRateReducer
+  }
 }
 
-
-export default Home;
+export default connect(mapStateToProps, {getData})(Home);

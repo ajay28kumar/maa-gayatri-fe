@@ -1,11 +1,11 @@
 import Home from "./Home";
 import Billing from "./Billing";
 import Login from "./Login";
-import Stocks from "./Stocks";
+import EditStocks from "./EditStocks";
 
 export {
     Home,
     Billing,
     Login,
-    Stocks
+    EditStocks,
 }
