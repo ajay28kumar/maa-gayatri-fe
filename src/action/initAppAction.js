@@ -1,7 +1,6 @@
 import { actionType, userAction } from "../constant"
 
 const initAppAction = (response) => (dispatch) => { 
-    console.log("response : ", response)
     switch(response.apiState){
         case userAction.REQUEST:
             return dispatch({type: actionType.USER_LOGIN_REQUEST, payload: response})

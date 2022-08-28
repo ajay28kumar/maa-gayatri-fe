@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const LoginHeader = () => {
   let navigate = useNavigate();
-
   const onLoginClick = () => navigate("/login");
   return (
       <AppBar position="static">

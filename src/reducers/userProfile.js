@@ -2,8 +2,8 @@ import { actionType, userAction } from "../constant";
 
 const initState = {
     apiState: "",
-    isLoggedIn: true,
-    userName: '',
+    isLoggedIn: false,
+    userDetails: {}
 };
 
 
@@ -16,12 +16,17 @@ const userProfile = (state=initState,action) => {
                 apiState: userAction.REQUEST,
             }
         case actionType.USER_LOGIN_SUCCESS:
-            const {isLoggedIn, userName} = payload || {}
+            const {user} = payload;
+            const {auth} = user || {}
+            const {currentUser} = auth || {};
+            console.log( "payload is : ", currentUser);
+            const {displayName, email,photoURL} = currentUser || {}
             return {
                 ...state,
                 apiState: userAction.SUCCESS, 
-                isLoggedIn, 
-                userName
+                isLoggedIn: !!auth,
+                userDetails: {displayName, email,photoURL}
+
             }
             default:
                 return state;

@@ -1,33 +1,23 @@
-import { useEffect } from "react"
-import firebase from 'firebase/compat/app';
-import {firebaseConfig} from './firebaseSetup';
 import AppRoute from "./Router";
 import { connect } from "react-redux";
 import initAppAction from './action/initAppAction';
-import { userAction } from "./constant";
-import 'firebase/compat/auth';
-
-firebase.initializeApp(firebaseConfig);
+import LoginLoader from './Component/LoginLoader'
 
 
-const AppUI = (props) => {
-    useEffect(()=>{
-        props.initAppAction({apiState: userAction.REQUEST });
-        const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-            props.initAppAction({apiState: userAction.SUCCESS,user});
-          });
-          // Make sure we un-register Firebase observers when the component unmounts.
-          return () => unregisterAuthObserver(); 
-    },[props])
+const AppUI = ({apiState}) => {
+    if(apiState !== ""){
+        return <AppRoute/>
+    }
     return (
-        <AppRoute/>
+        <LoginLoader/>
     )
 }
 
 const mapStateToProps = state => {
-    const {userProfile} = state || {};
+    const { userProfile } = state || {};
+    const {apiState} = userProfile
     return {
-        ...userProfile
+        apiState
     }
 }
 
