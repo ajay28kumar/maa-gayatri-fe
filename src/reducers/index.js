@@ -1,6 +1,10 @@
 import itemRateReducer from './itemRateReducer';
+import userProfile from './userProfile';
 
 
-export default {
-    itemRateReducer
+const reducers = {
+    itemRateReducer,
+    userProfile
 }
+
+export default reducers;

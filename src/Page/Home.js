@@ -12,7 +12,7 @@ import getData from '../action/getData';
 
 
 const Home = (props) => {
-  const {data, apiState, getData} = props || {};
+  const {data, apiState } = props || {};
   const dataIds = Object.keys(data);
   const stockRates = []
   dataIds.forEach(element => {
@@ -20,7 +20,7 @@ const Home = (props) => {
   });
   useEffect(() => {
     props.getData();
-  } , []);
+  });
 
   if(apiState !== "SUCCESS"){
     return <h1>Loading ...</h1>

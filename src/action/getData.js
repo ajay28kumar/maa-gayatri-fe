@@ -1,8 +1,8 @@
-import {collection, getDocs, query, orderBy, onSnapshot} from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore";
 import { actionType } from "../constant";
 import {db} from '../firebaseSetup';
 
-export default() => (dispatch) => {
+const getData = () => (dispatch) => {
     const fetchData = async () => await getDocs(collection(db, "stockRate"));
     fetchData().then(res => {
         const responseData = {}
@@ -15,3 +15,5 @@ export default() => (dispatch) => {
         })
       })
 };
+
+export default getData;

@@ -1,8 +1,8 @@
 import { actionType } from "../constant";
-import {collection, where, doc,query, updateDoc, Timestamp} from 'firebase/firestore';
+import { doc, updateDoc, Timestamp} from 'firebase/firestore';
 import {db} from '../firebaseSetup';
 
-export default(itemData) => async (dispatch) => {
+const updateData = (itemData) => async (dispatch) => {
    const taskDocRef = doc(db, 'stockRate', itemData.id)
    try{
      await updateDoc(taskDocRef, {
@@ -24,3 +24,5 @@ export default(itemData) => async (dispatch) => {
        payload: itemData
    })
 };
+
+export default updateData;

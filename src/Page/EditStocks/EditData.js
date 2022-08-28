@@ -12,7 +12,7 @@ const EditData = ({apiState, data, getDataAction,updateDataAction}) => {
     if(apiState !== userAction.SUCCESS){
       getDataAction()
     }
-  } , []);
+  } , [apiState, getDataAction]);
 
   if(apiState!==userAction.SUCCESS){
     return <h1>Loading ... </h1>
