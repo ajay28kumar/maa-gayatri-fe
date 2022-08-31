@@ -19,7 +19,6 @@ const userProfile = (state=initState,action) => {
             const {user} = payload;
             const {auth} = user || {}
             const {currentUser} = auth || {};
-            console.log( "payload is : ", currentUser);
             const {displayName, email,photoURL} = currentUser || {}
             return {
                 ...state,
@@ -27,6 +26,14 @@ const userProfile = (state=initState,action) => {
                 isLoggedIn: !!auth,
                 userDetails: {displayName, email,photoURL}
 
+            }
+        case actionType.USER_LOGOUT_REQUEST:
+        case actionType.USER_LOGOUT_ERROR:
+            return state;
+        case actionType.USER_LOGOUT_SUCCESS:
+            return {
+                ...initState,
+                apiState: userAction.SUCCESS, 
             }
             default:
                 return state;
