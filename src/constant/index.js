@@ -1,14 +1,9 @@
-import actionType from "./actionType";
-
+import actionType from './actionType';
 
 const userAction = {
-    SUCCESS: "SUCCESS",
-    REQUEST: 'REQUEST',
-    ERROR: 'ERROR'
-}
+  SUCCESS: 'SUCCESS',
+  REQUEST: 'REQUEST',
+  ERROR: 'ERROR',
+};
 
-
-export {
-    actionType,
-    userAction,
-}
+export { actionType, userAction };
