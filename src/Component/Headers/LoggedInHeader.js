@@ -20,8 +20,7 @@ const LoggedInHeader = props => {
     .then(() => {
       props.logoutClickAction({apiState: userAction.SUCCESS})
       navigate("/")
-    }).
-    catch(() => {
+    }).catch(() => {
       props.logoutClickAction({apiState: userAction.ERROR})
     })
   }
