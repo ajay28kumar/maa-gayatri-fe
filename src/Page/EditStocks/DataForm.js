@@ -52,7 +52,7 @@ const DataForm = ({
         flexDirection: 'column',
         alignItems: 'center',
         maxWidth: 600,
-        minWidth: 280,
+        minWidth: 320,
       }}
     >
       <TextField
@@ -61,7 +61,7 @@ const DataForm = ({
         label='Category'
         id='outlined-size-small'
         value={category}
-        size='large'
+        fullWidth
         onChange={(e) => setCategory(e.target.value)}
       />
       <TextField
@@ -70,7 +70,7 @@ const DataForm = ({
         label='Brand'
         id='outlined-size-small'
         value={brand}
-        size='large'
+        fullWidth
         onChange={(e) => setBrand(e.target.value)}
       />
       <TextField
@@ -79,7 +79,7 @@ const DataForm = ({
         label='Other'
         id='outlined-size-small'
         value={other}
-        size='large'
+        fullWidth
         onChange={(e) => setOther(e.target.value)}
       />
       <TextField
@@ -88,7 +88,7 @@ const DataForm = ({
         label='Rate'
         id='outlined-size-small'
         value={rate}
-        size='large'
+        fullWidth
         onChange={(e) => {
           const rateValue = parseInt(e.target.value, 10);
           if (!isNaN(rateValue)) {
@@ -102,7 +102,7 @@ const DataForm = ({
         label='Unit'
         id='outlined-size-small'
         value={unit}
-        size='large'
+        fullWidth
         onChange={(e) => setUnit(e.target.value)}
       />
       <TextField
@@ -111,16 +111,17 @@ const DataForm = ({
         label='Stock'
         id='outlined-size-small'
         value={stockStore}
-        size='large'
+        fullWidth
         onChange={(e) => setStock(e.target.value)}
       />
-      <Button
-        variant='contained'
-        disabled={disabledStatus}
-        onClick={handleSubmit}
-      >
-        Add Data
-      </Button>
+      <div>
+        <Button
+          variant='contained'
+          disabled={disabledStatus}
+          onClick={handleSubmit}>
+          Add Data
+        </Button>
+      </div>
     </div>
   );
 };

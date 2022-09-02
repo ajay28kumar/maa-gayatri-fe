@@ -19,12 +19,20 @@ const EditStocks = ({updateApiState}) => {
   if(updateApiState===userAction.REQUEST){
     return <h1>Updating Data</h1>
   }
-
-  if (itemId) {
-    return <EditData itemId={itemId} />;
+  const formData = () => {
+    if (itemId) {
+      return <EditData itemId={itemId} />;
+    }
+  
+    return <AddData />;
   }
+  
 
-  return <AddData />;
+  return (
+    <div style={{display: 'flex', justifyContent: "center"}}>
+      {formData()}
+      </div>
+  )
 };
 
 const mapStateToProps = (state) => {
