@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material'
-import {DeleteIcon, SaveIcon} from '@mui/icons-material'
+import EditIcon from '@mui/icons-material/EditOutlined';
 import getData from '../../action/getData';
 
 const Home = (props) => {
-  const { data, apiState } = props || {};
+    let navigate = useNavigate();
+  const { data, apiState, isLoggedIn } = props || {};
   const dataIds = Object.keys(data);
   const stockRates = [];
   dataIds.forEach((element) => {
@@ -23,6 +25,9 @@ const Home = (props) => {
     return <h1>No Data Found</h1>;
   }
 
+  
+  const onEditClick = (itemId) => navigate(`/edit-stocks/${itemId}`);
+
   return (
     <TableContainer component={Paper} sx={{ maxHeight: '100vh' }}>
       <Table sx={{ minWidth: 320 }} stickyHeader aria-label='sticky table'>
@@ -30,6 +35,10 @@ const Home = (props) => {
           <TableRow>
             <TableCell align='left'>Item</TableCell>
             <TableCell align='right'>Rates</TableCell>
+            {isLoggedIn && <TableCell align='right'>Remaining Stocks</TableCell>}
+            {isLoggedIn && <TableCell align='right'>Created At</TableCell>}
+            {isLoggedIn && <TableCell align='right'>Updated At</TableCell>}
+            {isLoggedIn && <TableCell align='right'>Edit</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -39,6 +48,10 @@ const Home = (props) => {
                 {`${rate.category} - ${rate.brand} - ${rate.others}`}
               </TableCell>
               <TableCell align='right'>{`${rate.rate} / ${rate.unit}`}</TableCell>
+              {isLoggedIn && <TableCell align='right'>{rate.stockStore}</TableCell>}
+              {isLoggedIn && <TableCell align='right'>{new Date(rate.createdAt.seconds * 1000).toDateString()}</TableCell>}
+              {isLoggedIn && <TableCell align='right'>{new Date(rate.updatedAt.seconds * 1000).toDateString()}</TableCell>}
+              {isLoggedIn && <TableCell align='right'><EditIcon onClick={()=>onEditClick(rate.id)}/></TableCell>}
             </TableRow>
           ))}
         </TableBody>
@@ -48,9 +61,11 @@ const Home = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { itemRateReducer } = state || {};
+  const { itemRateReducer, userProfile } = state || {};
+  const {isLoggedIn} = userProfile || {}
   return {
     ...itemRateReducer,
+    isLoggedIn
   };
 };
 
