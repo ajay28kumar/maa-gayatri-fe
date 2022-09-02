@@ -2,12 +2,15 @@ import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { actionType } from '../constant';
 import { db } from '../firebaseSetup';
 
-export default (data) => async (dispatch) => {
+const addData = (data) => async (dispatch) => {
   const payload = {
     ...data,
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
   };
+  dispatch({
+    type: actionType.UPDATE_DATA_REQUEST
+  });
   try {
     await addDoc(collection(db, 'stockRate'), payload);
     dispatch({
@@ -17,4 +20,11 @@ export default (data) => async (dispatch) => {
   } catch (err) {
     console.log('error in update : ', err);
   }
+  setTimeout(()=>{
+    dispatch({
+      type: actionType.UPDATE_DATA_RESET
+    });
+  },1000);
 };
+
+export default addData;

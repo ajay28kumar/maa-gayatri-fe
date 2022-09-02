@@ -4,6 +4,10 @@ import { db } from '../firebaseSetup';
 
 const updateData = (itemData) => async (dispatch) => {
   const taskDocRef = doc(db, 'stockRate', itemData.id);
+  dispatch({
+    type: actionType.UPDATE_DATA_REQUEST,
+    payload: itemData,
+  });
   try {
     await updateDoc(taskDocRef, {
       ...itemData,
@@ -19,10 +23,10 @@ const updateData = (itemData) => async (dispatch) => {
   } catch (err) {
     alert(err);
   }
-  return dispatch({
-    type: actionType.UPDATE_DATA_REQUEST,
-    payload: itemData,
-  });
+  setTimeout(()=>{
+    dispatch({
+      type: actionType.UPDATE_DATA_RESET})
+  },1000)
 };
 
 export default updateData;

@@ -1,22 +1,13 @@
 import DataForm from './DataForm';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { db } from '../../firebaseSetup';
+import { connect } from 'react-redux';
+import addData from '../../action/addData';
 
-const AddData = () => {
-  const handleSubmit = async (e, stockData) => {
-    e.preventDefault();
-    const { remainingStock, ...rest } = stockData || {};
-    const data = {
-      ...rest,
-      createdAt: Timestamp.now(),
-    };
-    try {
-      await addDoc(collection(db, 'stockRate'), data);
-    } catch (err) {
-      console.log('error in update : ', err);
-    }
+const AddData = ({addDataAction}) => {
+  const handleSubmit = async (stockData) => {
+    addDataAction(stockData);
   };
   return <DataForm onSubmitAction={handleSubmit} />;
 };
 
-export default AddData;
+
+export default connect(null, {addDataAction: addData})(AddData);

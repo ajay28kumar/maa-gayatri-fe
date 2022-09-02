@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material'
 import EditIcon from '@mui/icons-material/EditOutlined';
 import getData from '../../action/getData';
+import { Box } from '@mui/system';
 
 const Home = (props) => {
     let navigate = useNavigate();
@@ -29,7 +30,8 @@ const Home = (props) => {
   const onEditClick = (itemId) => navigate(`/edit-stocks/${itemId}`);
 
   return (
-    <TableContainer component={Paper} sx={{ maxHeight: '100vh' }}>
+    <Box>
+    <TableContainer component={Paper}>
       <Table sx={{ minWidth: 320 }} stickyHeader aria-label='sticky table'>
         <TableHead>
           <TableRow>
@@ -47,8 +49,8 @@ const Home = (props) => {
               <TableCell component='th' scope='row'>
                 {`${rate.category} - ${rate.brand} - ${rate.others}`}
               </TableCell>
-              <TableCell align='right'>{`${rate.rate} / ${rate.unit}`}</TableCell>
-              {isLoggedIn && <TableCell align='right'>{rate.stockStore}</TableCell>}
+              <TableCell align='right'>&#8377; {`${rate.rate} / ${rate.unit}`}</TableCell>
+              {isLoggedIn && <TableCell align='right'>{`${rate.stockStore} ${rate.unit}`}</TableCell>}
               {isLoggedIn && <TableCell align='right'>{new Date(rate.createdAt.seconds * 1000).toDateString()}</TableCell>}
               {isLoggedIn && <TableCell align='right'>{new Date(rate.updatedAt.seconds * 1000).toDateString()}</TableCell>}
               {isLoggedIn && <TableCell align='right'><EditIcon onClick={()=>onEditClick(rate.id)}/></TableCell>}
@@ -57,6 +59,7 @@ const Home = (props) => {
         </TableBody>
       </Table>
     </TableContainer>
+    </Box>
   );
 };
 

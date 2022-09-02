@@ -19,7 +19,6 @@ const EditData = ({ apiState, data, getDataAction, updateDataAction }) => {
   const { brand, category, others, rate, unit, stockStore } = data || {};
 
   const updateAction = (stockRes) => {
-    console.log('stockData : ', stockRes);
     return updateDataAction({
       ...data,
       ...stockRes,
@@ -43,7 +42,6 @@ const mapStateToProps = (state, otherProps) => {
   const { itemId } = otherProps || {};
   const { itemRateReducer } = state || {};
   const { apiState, data } = itemRateReducer || {};
-  console.log('getData : ', data[itemId]);
   return {
     apiState,
     data: data[itemId],
