@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { userAction } from '../../constant';
 import getData from '../../action/getData';
 import updateData from '../../action/updateData';
+import deleteData from '../../action/deleteData';
 
-const EditData = ({ apiState, data, getDataAction, updateDataAction }) => {
+const EditData = ({itemId, apiState, data, getDataAction, updateDataAction ,onDeleteAction}) => {
   useEffect(() => {
     if (apiState !== userAction.SUCCESS) {
       getDataAction();
@@ -27,6 +28,7 @@ const EditData = ({ apiState, data, getDataAction, updateDataAction }) => {
 
   return (
     <DataForm
+      itemId={!!itemId}
       brandDetail={brand}
       categoryDetail={category}
       otherDetails={others}
@@ -34,6 +36,7 @@ const EditData = ({ apiState, data, getDataAction, updateDataAction }) => {
       unitDetail={unit}
       remainingStock={stockStore}
       onSubmitAction={(stockData) => updateAction(stockData)}
+      onDeleteAction={() => onDeleteAction(data)}
     />
   );
 };
@@ -51,4 +54,5 @@ const mapStateToProps = (state, otherProps) => {
 export default connect(mapStateToProps, {
   getDataAction: getData,
   updateDataAction: updateData,
+  onDeleteAction : deleteData
 })(EditData);

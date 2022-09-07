@@ -6,17 +6,17 @@ import { userAction } from '../../constant';
 import AddData from './AddData';
 import EditData from './EditData';
 
-const EditStocks = ({updateApiState}) => {
+const EditStocks = ({updateApiState, deleteApiState}) => {
   const { itemId } = useParams();
   let navigate = useNavigate();
-
+  console.log(updateApiState, 'updateApiState, deleteApiState',deleteApiState);
   useEffect(()=>{
-    if(updateApiState===userAction.SUCCESS){
+    if(updateApiState===userAction.SUCCESS || deleteApiState=== userAction.SUCCESS ){
       return navigate('/')
     }
-  },[updateApiState, navigate])
+  },[updateApiState, deleteApiState, navigate])
 
-  if(updateApiState===userAction.REQUEST){
+  if(updateApiState===userAction.REQUEST || deleteApiState === userAction.REQUEST){
     return <h1>Updating Data</h1>
   }
   const formData = () => {
@@ -37,8 +37,9 @@ const EditStocks = ({updateApiState}) => {
 
 const mapStateToProps = (state) => {
   const { itemRateReducer } = state || {};
-  const { updateApiState} = itemRateReducer || {};
+  const { updateApiState, deleteApiState} = itemRateReducer || {};
   return {
+    deleteApiState,
     updateApiState
   }
 }

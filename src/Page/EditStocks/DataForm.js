@@ -4,6 +4,7 @@ import { Timestamp } from 'firebase/firestore';
 import { TextField, Button } from '@mui/material';
 
 const DataForm = ({
+  itemId = false,
   categoryDetail = '',
   brandDetail = '',
   otherDetails = '',
@@ -11,7 +12,9 @@ const DataForm = ({
   unitDetail = '',
   remainingStock = '',
   onSubmitAction,
+  onDeleteAction
 }) => {
+  console.log('itemId : ', itemId);
   const [category, setCategory] = useState(categoryDetail);
   const [brand, setBrand] = useState(brandDetail);
   const [other, setOther] = useState(otherDetails);
@@ -44,6 +47,10 @@ const DataForm = ({
     e.preventDefault();
     onSubmitAction(stockData);
   };
+  const deleteData = e => {
+    e.preventDefault();
+    onDeleteAction()
+  }
 
   return (
     <div
@@ -90,7 +97,11 @@ const DataForm = ({
         value={rate}
         fullWidth
         onChange={(e) => {
-          const rateValue = parseInt(e.target.value, 10);
+          const val = e.target.value;
+          if(val===""){
+            setRate(val);
+          }
+          const rateValue = parseInt(val, 10);
           if (!isNaN(rateValue)) {
             setRate(rateValue);
           }
@@ -112,16 +123,38 @@ const DataForm = ({
         id='outlined-size-small'
         value={stockStore}
         fullWidth
-        onChange={(e) => setStock(e.target.value)}
+        onChange={(e) => {
+          const val = e.target.value;
+          if(val===""){
+            setStock(val);
+          }
+          const stockValue = parseInt(val, 10);
+          if (!isNaN(stockValue)) {
+            setStock(stockValue);
+          }
+        }}
       />
-      <div>
+      {itemId ? <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
+        <Button
+          variant="outlined"
+          disabled={disabledStatus}
+          onClick={deleteData}>
+          Delete Data
+        </Button>
         <Button
           variant='contained'
           disabled={disabledStatus}
           onClick={handleSubmit}>
           Add Data
         </Button>
-      </div>
+        </div> : 
+      <Button
+        variant='contained'
+        disabled={disabledStatus}
+        onClick={handleSubmit}>
+        Add Data
+      </Button>
+    }
     </div>
   );
 };

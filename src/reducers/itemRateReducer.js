@@ -4,6 +4,7 @@ const initState = {
   data: {},
   apiState: '',
   updateApiState: '',
+  deleteApiState: '',
 };
 
 const itemRateReducer = (state = initState, action) => {
@@ -37,6 +38,26 @@ const itemRateReducer = (state = initState, action) => {
         ...state,
         updateApiState: '',
       };
+    case actionType.DELETE_DATA_REQUEST:
+      return {
+        ...state,
+        deleteApiState: userAction.REQUEST
+      }
+      case actionType.DELETE_DATA_ERROR:
+        return {
+          ...state,
+          deleteApiState: userAction.ERROR
+        }
+    case actionType.DELETE_DATA_SUCCESS:
+      return {
+        ...initState,
+        deleteApiState: userAction.SUCCESS
+      }
+    case actionType.DELETE_DATA_RESET:
+      return {
+        ...state,
+        deleteApiState: ''
+      }  
     default:
       return state;
   }

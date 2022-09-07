@@ -26,7 +26,7 @@ const updateData = (itemData) => async (dispatch) => {
   setTimeout(()=>{
     dispatch({
       type: actionType.UPDATE_DATA_RESET})
-  },1000)
+  },2000)
 };
 
 export default updateData;

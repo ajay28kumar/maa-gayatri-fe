@@ -24,7 +24,7 @@ const addData = (data) => async (dispatch) => {
     dispatch({
       type: actionType.UPDATE_DATA_RESET
     });
-  },1000);
+  },2000);
 };
 
 export default addData;
