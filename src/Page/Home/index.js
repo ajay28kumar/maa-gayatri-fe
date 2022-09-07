@@ -16,7 +16,7 @@ const Home = (props) => {
   });
   useEffect(() => {
     props.getData();
-  });
+  },[apiState]);
 
   if (apiState !== 'SUCCESS') {
     return <h1>Loading ...</h1>;
