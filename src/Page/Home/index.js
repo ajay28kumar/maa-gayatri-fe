@@ -7,16 +7,16 @@ import getData from '../../action/getData';
 import { Box } from '@mui/system';
 
 const Home = (props) => {
-    let navigate = useNavigate();
-  const { data, apiState, isLoggedIn } = props || {};
+  let navigate = useNavigate();
+  const { data, apiState, isLoggedIn,getData : getDataRequest } = props || {};
   const dataIds = Object.keys(data);
   const stockRates = [];
   dataIds.forEach((element) => {
     stockRates.push(props.data[element]);
   });
   useEffect(() => {
-    props.getData();
-  },[apiState]);
+    getDataRequest();
+  },[apiState,getDataRequest]);
 
   if (apiState !== 'SUCCESS') {
     return <h1>Loading ...</h1>;
