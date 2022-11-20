@@ -9,7 +9,7 @@ import EditData from './EditData';
 const EditStocks = ({updateApiState, deleteApiState}) => {
   const { itemId } = useParams();
   let navigate = useNavigate();
-  console.log(updateApiState, 'updateApiState, deleteApiState',deleteApiState);
+
   useEffect(()=>{
     if(updateApiState===userAction.SUCCESS || deleteApiState=== userAction.SUCCESS ){
       return navigate('/')
